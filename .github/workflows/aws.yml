@@ -1,36 +1,22 @@
-name: Deploy to Amazon ECS
+name: ECR Build Test
 
 on:
   push:
     branches: [ "main" ]
 
-permissions:
-  contents: read
-
 jobs:
-  deploy:
-    name: Deploy
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout source
+    - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ secrets.MY_AWS_REGION }}
-
-    - name: Login to Amazon ECR
-      id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
-
-    - name: Build, tag, and push image to Amazon ECR
-      env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        IMAGE_TAG: latest
+    - name: Debug workspace
       run: |
-        echo "Building image..."
-        docker buildx build --platform linux/amd64 -t $ECR_REGISTRY/${{ secrets.ECR_REPOSITORY_NAME }}:$IMAGE_TAG --push .
+        pwd
+        ls -la
+
+    - name: Docker Build Test
+      run: |
+        docker build -t testimage .
