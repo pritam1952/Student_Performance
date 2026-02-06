@@ -72,16 +72,5 @@ The application is containerized using **Docker**, automated using **GitHub Acti
 
 ---
 
-## 📈 Results & Visualizations
 
-- Actual vs Predicted comparison  
-- Feature importance analysis  
-- Error distribution  
-- Web application interface  
-
-
-
----
-
-## ⚙ CI/CD Pipeline Flow
 
