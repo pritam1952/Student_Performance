@@ -79,7 +79,7 @@ The application is containerized using **Docker**, automated using **GitHub Acti
 - Error distribution  
 - Web application interface  
 
-*(Add screenshots in `/images` directory for better visualization.)*
+
 
 ---
 
